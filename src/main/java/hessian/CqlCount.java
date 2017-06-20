@@ -431,15 +431,15 @@ public class CqlCount {
 	StringBuilder sb = new StringBuilder();
 	sb.append("SELECT COUNT(*) FROM ");
 	sb.append(keyspaceName).append(".").append(tableName);
-	sb.append(" WHERE Token(");
+	sb.append(" WHERE Token(\"");
 	sb.append(partkeys.get(0).getName());
 	for (int i = 1; i < partkeys.size(); i++)
-	    sb.append(", ").append(partkeys.get(i).getName());
-	sb.append(") > ? AND Token(");
+	    sb.append("\", \"").append(partkeys.get(i).getName());
+	sb.append("\") > ? AND Token(\"");
 	sb.append(partkeys.get(0).getName());
 	for (int i = 1; i < partkeys.size(); i++)
-	    sb.append(",").append(partkeys.get(i).getName());
-	sb.append(") <= ?");
+	    sb.append("\",\"").append(partkeys.get(i).getName());
+	sb.append("\") <= ?");
 	
 	debugPrint("Query: " + sb.toString(), true, 2);
 
